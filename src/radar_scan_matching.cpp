@@ -202,6 +202,7 @@ void pub_odom_msg(ros::Publisher pose_pub, Eigen::Matrix4f P, string child_frame
 void Callback(pcl::PointCloud<pcl::PointXYZI>::Ptr in_pc);
 void read_directory(const std::string& name, std::vector<std::string>& v);
 void WriteToFile(Eigen::Matrix4f& T, string& file_path);
+void WriteT2File(Eigen::Matrix4f& T, string& file_path);
 pcl::PointCloud<pcl::PointXYZI>::Ptr make2DPointCloud(pcl::PointCloud<pcl::PointXYZI>::Ptr pc_3d);
 pcl::PointCloud<pcl::PointXYZI>::Ptr RadarPointCloudFilter(pcl::PointCloud<pcl::PointXYZI>::Ptr pc_in, float thres);
 float GetDistanceFromT(Eigen::Matrix4f T);
@@ -378,8 +379,10 @@ void Callback(pcl::PointCloud<pcl::PointXYZI>::Ptr in_pc){
 
     //-- Write result to file --//
     string file_path = save_directory + "/" + bag_name + res_file_name;
+    string tf_file_path  = save_directory + "/" + bag_name + tf_file_name;
     if (save_res != 0){
       WriteToFile(curr_tf_inv, file_path);
+      WriteT2File(T, tf_file_path);
     }
     //-- Pub odom msg --//
     pub_odom_msg(gt_pose_pub, P_gt_new, "gt_odom");
@@ -567,6 +570,18 @@ void WriteToFile(Eigen::Matrix4f& T, string& file_path){
           T(0,0),T(0,1),0.0 ,T(0,3),
           T(1,0),T(1,1),0.0 ,T(1,3),
           0.0   ,0.0   ,1.0 ,T(2,3));
+  fclose(fp);
+}
+
+
+void WriteT2File(Eigen::Matrix4f& T, string& file_path){
+  FILE *fp;
+  fp = fopen(file_path.c_str(),"a");
+  fprintf(fp, "%f %f %f %f %f %f %f %f %f %f %f %f %f %f %f %f\n",
+          T(0,0),T(0,1),T(0,2) ,T(0,3),
+          T(1,0),T(1,1),T(1,2) ,T(1,3),
+          T(2,0),T(2,1),T(2,2) ,T(2,3),
+          T(3,0),T(3,1),T(3,2) ,T(3,3));
   fclose(fp);
 }
 
