@@ -447,8 +447,8 @@ void pub_odom_msg(ros::Publisher pose_pub, Eigen::Matrix4f P, string child_frame
 
   nav_msgs::Odometry  odom_msg;
   //odom_msg.header.stamp = input->header.stamp;
-  odom_msg.header.frame_id = "/origin";
-  odom_msg.child_frame_id = "/origin";
+  odom_msg.header.frame_id = "origin";
+  odom_msg.child_frame_id = "origin";
   tf::poseTFToMsg(transform, odom_msg.pose.pose);
   pose_pub.publish(odom_msg);
 
