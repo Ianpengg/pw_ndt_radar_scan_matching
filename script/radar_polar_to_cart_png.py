@@ -12,7 +12,7 @@ cart_resolution = .125 # m
 # Cartesian visualisation size (used for both height and width)
 cart_pixel_width = 2001 # pixels
 # data path
-path = "/mnt/Disk2/Oxford_radar/"
+path = "/media/ee904/Data_stored/ramnet_data/oxford/"
 # output folder name
 directory = "radar_cart_0.125_2001_timestamped"
 ###############################################
