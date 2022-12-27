@@ -67,6 +67,7 @@ int global_viz = 0;
 int start_index = 0;
 int save_res = 0;
 string res_file_name = "_res.txt";
+string tf_file_name = "_tf.txt";
 
 //////////////////////////////////////
 
