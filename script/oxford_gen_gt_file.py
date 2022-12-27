@@ -6,8 +6,8 @@ import numpy as np
 import time
 import math
 
-oxford_data_path = "/media/ee904/Data_stored/ramnet_data/oxford/"
-gt_file_save_path = "kitti_eval/devkit_for_oxford/cpp/data/odometry/poses/"
+oxford_data_path = "/mnt/Disk2/Oxford_radar/"
+gt_file_save_path = "../kitti_eval/devkit_for_oxford/cpp/data/odometry/poses/"
 
 def GetMatFromXYYaw(x,y,yaw):
     tf_mat = np.matrix([[math.cos(yaw), -math.sin(yaw), 0.0, x]
