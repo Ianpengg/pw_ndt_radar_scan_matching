@@ -2,14 +2,14 @@ cmake_minimum_required(VERSION 3.0.2)
 project(pw_ndt_radar_scan_matching)
 
 ## Compile as C++11, supported in ROS Kinetic and newer
-# add_compile_options(-std=c++11)
+#add_compile_options(-std=c++11)
 add_compile_options(-std=c++14)
 set(CMAKE_CXX_STANDARD 14)
 set(CMAKE_CXX_STANDARD_REQUIRED ON)
 set(CMAKE_CXX_EXTENSIONS OFF)
 set(CMAKE_BUILD_TYPE Release)
 
-set (OpenCV_DIR /opt/ros/kinetic/share/OpenCV-3.3.1-dev)
+set(OpenCV_DIR /usr/local/share/OpenCV)
 find_package( OpenCV REQUIRED )
 
 ## Find catkin macros and libraries
@@ -32,6 +32,7 @@ find_package(catkin REQUIRED COMPONENTS
 ## CATKIN_DEPENDS: catkin_packages dependent projects also need
 ## DEPENDS: system dependencies of this project that dependent projects also need
 catkin_package(
+
 #  INCLUDE_DIRS include
 #  LIBRARIES pw_ndt_radar_scan_matching
 #  CATKIN_DEPENDS roscpp rospy std_msgs
@@ -51,5 +52,5 @@ include_directories(
 include_directories(${OpenCV_INCLUDE_DIRS})
 
 add_executable(radar_scan_matching src/radar_scan_matching.cpp)
-target_link_libraries(radar_scan_matching ${catkin_LIBRARIES} ${OpenCV_LIBS})
+target_link_libraries(radar_scan_matching ${catkin_LIBRARIES} ${OpenCV_LIBS} pcl_visualization)
 
