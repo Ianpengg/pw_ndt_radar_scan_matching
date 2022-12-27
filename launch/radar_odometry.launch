@@ -1,18 +1,24 @@
 <?xml version="1.0"?>
 
 <launch>
-
+  <arg name="bag_name" default='city_1_3'/>
+  <arg name="save_dir" default='/media/ee904/Data_stored/radiate/data/radiate'/>
+  
   <node pkg="pw_ndt_radar_scan_matching" type="radar_scan_matching" name="radar_odometry" output="screen" ns="radar_odometry" clear_params="true">
 
       <!-- radar data path -->
-      <param name="/directory" value= "/mnt/Disk2/Oxford_radar/radar_cart_0.125_1001_timestamped/part1" />
-      <param name="/gt_directory" value= "/home/joinet/radar_ws/src/pw_ndt_radar_scan_matching/kitti_eval/devkit_for_oxford/cpp/data/odometry/poses" />
-      <param name="/save_directory" value= "/home/joinet/radar_ws/src/pw_ndt_radar_scan_matching/kitti_eval/devkit_for_oxford/cpp/results/result/data" />
+      <!-- <param name="/directory" value= "/media/ee904/Data_stored/ramnet_data/oxford/radar_cart_0.125_2001_timestamped/part1" /> -->
+      <param name="/directory" value= "/media/ee904/Data_stored/radiate/data/radiate/radar_cart_0.7361_2001_timestamped/" />
+      <param name="/gt_directory" value= "/media/ee904/Data_stored/pwndt_ws/src/pw_ndt_radar_scan_matching/kitti_eval/devkit_for_oxford/cpp/data/odometry/poses" />
+      <!--param name="/save_directory" value= "/media/ee904/Data_stored/radiate/data/radiate" -->
+      <param name="/save_directory" value="$(arg save_dir)" />
       <!--
-      <param name="/init_directory" value= "/home/joinet/radar_ws/src/pw_ndt_radar_scan_matching/kitti_eval/devkit_for_oxford/cpp/results/result/data" />
+      <param name="/init_directory" value= "/media/ee904/Data_stored/pwndt_ws/src/pw_ndt_radar_scan_matching/kitti_eval/devkit_for_oxford/cpp/results/result/data"/>
       -->
-      <!-- <param name="/bag_name" value= "2019-01-10-11-46-21-radar-oxford-10k" /> -->
-
+      
+      <!--param name="/bag_name" value= "city_1_3" -->
+      <param name="/bag_name" value="$(arg bag_name)" />
+      
       <param name="/global_mask_flag" value="0" />
       <param name="/global_viz" value="0" />
       <param name="/save_res" value="1" />
